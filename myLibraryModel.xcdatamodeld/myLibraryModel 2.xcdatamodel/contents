@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="17D47" minimumToolsVersion="Xcode 8.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Admin" representedClassName="Admin" syncable="YES" codeGenerationType="class">
+        <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dept_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSenior" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="manager" inverseEntity="Department" syncable="YES"/>
+        <relationship name="manager_borrow" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Borrow" inverseName="borrow_manager" inverseEntity="Borrow" syncable="YES"/>
+        <relationship name="manager_punish" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Punish" inverseName="punish_manager" inverseEntity="Punish" syncable="YES"/>
+        <relationship name="manager_return" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Return" inverseName="return_manager" inverseEntity="Return" syncable="YES"/>
+    </entity>
+    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="book_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="broken_num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="press_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="press_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book_borrow" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Borrow" inverseName="borrow_book" inverseEntity="Borrow" syncable="YES"/>
+        <relationship name="book_punish" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Punish" inverseName="punish_book" inverseEntity="Punish" syncable="YES"/>
+        <relationship name="book_return" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Return" inverseName="return_book" inverseEntity="Return" syncable="YES"/>
+        <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" inverseName="book" inverseEntity="Classification" syncable="YES"/>
+    </entity>
+    <entity name="Borrow" representedClassName="Borrow" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="borr_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="borrow_book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="book_borrow" inverseEntity="Book" syncable="YES"/>
+        <relationship name="borrow_manager" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Admin" inverseName="manager_borrow" inverseEntity="Admin" syncable="YES"/>
+        <relationship name="borrow_reader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="reader_borrow" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Classification" representedClassName="Classification" syncable="YES" codeGenerationType="class">
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="classification" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Department" representedClassName="Department" syncable="YES" codeGenerationType="class">
+        <attribute name="dept_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="manager" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Admin" inverseName="department" inverseEntity="Admin" syncable="YES"/>
+    </entity>
+    <entity name="Punish" representedClassName="Punish" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="punish_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="punish_free" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="punish_tips" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="punish_book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="book_punish" inverseEntity="Book" syncable="YES"/>
+        <relationship name="punish_manager" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Admin" inverseName="manager_punish" inverseEntity="Admin" syncable="YES"/>
+        <relationship name="punish_reader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="reader_punish" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Return" representedClassName="Return" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retu_date" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="return_book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="book_return" inverseEntity="Book" syncable="YES"/>
+        <relationship name="return_manager" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Admin" inverseName="manager_return" inverseEntity="Admin" syncable="YES"/>
+        <relationship name="return_reader" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="reader_return" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="reader_borrow" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Borrow" inverseName="borrow_reader" inverseEntity="Borrow" syncable="YES"/>
+        <relationship name="reader_punish" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Punish" inverseName="punish_reader" inverseEntity="Punish" syncable="YES"/>
+        <relationship name="reader_return" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Return" inverseName="return_reader" inverseEntity="Return" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Admin" positionX="196" positionY="296" width="128" height="210"/>
+        <element name="Book" positionX="196" positionY="18" width="128" height="270"/>
+        <element name="Borrow" positionX="-299" positionY="252" width="128" height="150"/>
+        <element name="Classification" positionX="25" positionY="-34" width="128" height="90"/>
+        <element name="Department" positionX="34" positionY="279" width="128" height="90"/>
+        <element name="Punish" positionX="-299" positionY="63" width="128" height="180"/>
+        <element name="Return" positionX="-299" positionY="419" width="128" height="150"/>
+        <element name="User" positionX="-504" positionY="225" width="128" height="165"/>
+    </elements>
+</model>

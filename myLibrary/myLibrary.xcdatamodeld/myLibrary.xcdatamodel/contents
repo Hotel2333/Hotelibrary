@@ -1,4 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="book_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="broken_num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="press_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="press_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="classification" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Borrow" representedClassName="Borrow" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="borr_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retu_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="Class" representedClassName="Class" syncable="YES" codeGenerationType="class">
+        <attribute name="class_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="Department" representedClassName="Department" syncable="YES" codeGenerationType="class">
+        <attribute name="dept_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Manager" representedClassName="Manager" syncable="YES" codeGenerationType="class">
+        <attribute name="dept_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSenior" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="Punish" representedClassName="Punish" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="punish_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="punish_free" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="punish_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Reader" representedClassName="Reader" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reg_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="Return" representedClassName="Return" syncable="YES" codeGenerationType="class">
+        <attribute name="book_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reader_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retur_date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Class" positionX="-45" positionY="0" width="128" height="90"/>
+        <element name="Book" positionX="-18" positionY="27" width="128" height="225"/>
+        <element name="Reader" positionX="9" positionY="54" width="128" height="120"/>
+        <element name="Manager" positionX="27" positionY="72" width="128" height="135"/>
+        <element name="Department" positionX="45" positionY="90" width="128" height="75"/>
+        <element name="Borrow" positionX="0" positionY="45" width="128" height="120"/>
+        <element name="Punish" positionX="9" positionY="54" width="128" height="135"/>
+        <element name="Return" positionX="18" positionY="63" width="128" height="105"/>
+    </elements>
 </model>
